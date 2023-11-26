@@ -1,0 +1,34 @@
+body{
+    background-image: url(../images/background.png) !important;
+    color: white !important;
+    height: 100vh;
+    background-attachment: fixed;
+    font-family: 'Open Sans', sans-serif !important;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+.form-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.post-cards{
+    flex-grow: 1;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.post-list{
+    list-style-type: none;
+}
+.card{
+    min-width: 300px !important;
+    min-height: 350px !important;
+}
+
+.delete-button{
+    height: 25px;
+    margin-right: 0;
+}

@@ -1,0 +1,41 @@
+<!-- header -->
+<%- include("partials/header.ejs") %>
+
+
+<!-- input form -->
+<div class="container form-container my-5 text-center">
+  <form action="/addTodo" method="POST">
+    <input class="form-control mb-2" type="text" name="newTodo" placeholder="Add a new todo" required>
+    <button class="btn btn-success btn-outline-light" type="submit">Add Todo</button>
+  </form>
+</div>
+
+<!-- list creation -->
+<div class="container todo-list">
+  <% if(locals.todos.length > 0) { %>
+    <ul class="list-group">
+      <% locals.todos.forEach((todo, index) => { %>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <span<%= todo.completed ? ' class="completed"' : '' %>><%= todo.task %></span>
+          <div>
+            <form action="/markTodo" method="POST" class="d-inline">
+              <input type="hidden" name="todoIndex" value="<%= index %>">
+              <button class="btn btn-sm btn-outline-success" type="submit">
+                <%= todo.completed ? 'Unmark' : 'Mark' %>
+              </button>
+            </form>
+            <form action="/deleteTodo" method="POST" class="d-inline">
+              <input type="hidden" name="todoIndex" value="<%= index %>">
+              <button class="btn btn-sm btn-outline-warning" title="Delete" type="submit"><img src="images/delete.svg"  alt="delete-button"></button>
+            </form>
+          </div>
+        </li>
+      <% }); %>
+    </ul>
+  <% } else { %>
+    <h2>No todos yet.</h2>
+  <% } %>
+</div>
+
+<!-- footer -->
+<%- include("partials/footer.ejs") %>

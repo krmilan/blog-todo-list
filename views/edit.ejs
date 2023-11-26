@@ -1,0 +1,13 @@
+<!-- header -->
+<%- include("partials/header.ejs") %>
+
+<!-- edit form -->
+<div class="container form-container my-5 text-center">
+    <form action="/update/<%= index %>" method="POST">
+        <textarea class="form-control" name="updatedpost" rows="8" cols="40" maxlength="150" minlength="100" placeholder="Edit your post...(100-150 words)"><%= postToEdit %></textarea>
+        <input class="btn btn-success btn-outline-light mt-2" type="submit" value="Update Post">
+    </form>
+</div>
+
+<!-- footer -->
+<%- include("partials/footer.ejs") %>

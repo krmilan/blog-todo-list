@@ -1,0 +1,39 @@
+<!-- header -->
+<%- include("partials/header.ejs") %>
+
+<!-- input form -->
+<div class="container form-container my-5 text-center">
+  <form action="/submit" method="POST">
+      <textarea class="form-control" name="newpost" rows="8" cols="40" maxlength="150" minlength="100" placeholder="Write your thoughts here...(100-150 words)"></textarea>
+      <input class="btn btn-success btn-outline-light mt-2" type="submit" value="Post">
+  </form>
+</div>
+<!-- ------- -->
+
+<!-- card creation after an input -->
+<div class="container d-flex post-cards">
+  <% var numberOfPost = locals.lengthArray %>
+
+  <% if(locals.lengthArray > 0) {
+      locals.posts.forEach((post, index) => {%>
+          <li class="post-list">
+              <div class="card text-bg-success mb-3 mx-2" style="max-width: 18rem;">
+                  <div class="card-header"><%= new Date().toDateString(); %></div>
+                  <div class="card-body">
+                      <p class="card-text"><%= post %> </p> 
+                  </div>
+                  <!-- Edit and Delete Buttons -->
+                  <div class="card-footer d-flex justify-content-between">
+                        <a href="/edit/<%= index %>" class="btn btn-outline-light btn-sm"><img src="images/edit.gif" alt="" height="20px"></a>
+                        <a href="/delete/<%= index %>" class="btn btn-outline-warning btn-sm" title="Delete" onclick="return confirm('Are you sure you want to delete this post?')"><img src="images/delete.svg" alt="" height="20px"></a>
+                    </div>
+              </div>
+          </li>
+      <%})
+  } else {%>
+      <h2>No Posts Yet.</h2>
+  <% } %>
+</div>
+
+<!-- footer -->
+<%- include("partials/footer.ejs") %>
